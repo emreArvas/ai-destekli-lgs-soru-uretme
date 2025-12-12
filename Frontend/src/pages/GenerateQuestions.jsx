@@ -27,25 +27,25 @@ function GenerateQuestions() {
   const loadTopics = async () => {
     try {
       setLoadingTopics(true);
-      // Önce statistics'ten dene
+      
       const statsResponse = await apiService.getStatisticsSummary();
       if (statsResponse.data.success && statsResponse.data.data.topic_summary) {
         const topicList = statsResponse.data.data.topic_summary || [];
         const popularTopics = topicList.slice(0, 20).map(t => t.topic);
         setTopics(popularTopics);
       } else {
-        // Statistics yoksa questions'tan çek
+        
         const questionsResponse = await apiService.getQuestions({ limit: 200 });
         if (questionsResponse.data.success) {
           const questions = questionsResponse.data.data || [];
-          // Benzersiz konuları al
+          
           const uniqueTopics = [...new Set(questions.map(q => q.topic))].filter(Boolean);
           setTopics(uniqueTopics.sort());
         }
       }
     } catch (err) {
       console.error('Konular yüklenemedi:', err);
-      // Fallback: Sabit konu listesi
+      
       setTopics([
         'Teen Life',
         'Friendship',
@@ -101,7 +101,7 @@ function GenerateQuestions() {
     const maxWidth = pageWidth - 2 * margin;
     let yPosition = margin;
 
-    // Türkçe karakter temizleme fonksiyonu
+    
     const cleanText = (text) => {
       if (!text) return '';
       return text
@@ -119,13 +119,13 @@ function GenerateQuestions() {
         .replace(/ç/g, 'c');
     };
 
-    // Başlık
+    
     doc.setFontSize(18);
     doc.setFont('helvetica', 'bold');
     doc.text('MCP ILE URETILEN SORULAR', pageWidth / 2, yPosition, { align: 'center' });
     yPosition += 15;
 
-    // Bilgiler
+   
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
     doc.text(`Konu: ${formData.topic || 'Karma'}`, margin, yPosition);
@@ -135,7 +135,7 @@ function GenerateQuestions() {
     doc.text(`Toplam Soru: ${questions.length}`, margin, yPosition);
     yPosition += 15;
 
-    // Sorular
+    
     questions.forEach((q, index) => {
       if (yPosition > pageHeight - 60) {
         doc.addPage();
@@ -178,7 +178,7 @@ function GenerateQuestions() {
       yPosition += 10;
     });
 
-    // Cevap Anahtarı - Yeni sayfa
+    
     doc.addPage();
     yPosition = margin;
 
@@ -190,7 +190,7 @@ function GenerateQuestions() {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
 
-    // Cevapları 4 sütunda göster
+    
     const answersPerColumn = Math.ceil(questions.length / 4);
     const columnWidth = (pageWidth - 2 * margin) / 4;
     
@@ -216,7 +216,7 @@ function GenerateQuestions() {
       </div>
 
       <div className="exam-layout">
-        {/* Form */}
+       
         <div className="card exam-form">
           <div className="card-header">
             <h3 className="card-title">Soru Parametreleri</h3>
@@ -301,7 +301,7 @@ function GenerateQuestions() {
           )}
         </div>
 
-        {/* Results */}
+       
         <div className="card exam-preview-container">
           <div className="card-header flex justify-between items-center">
             <h3 className="card-title">Üretilen Sorular ({questions.length})</h3>
