@@ -37,7 +37,7 @@ function Statistics() {
     }
   };
 
-  // Memoize edilen veriler - gereksiz re-render'ları önler
+  
   const generalStats = useMemo(() => stats?.general_statistics || {}, [stats]);
   const topicSummary = useMemo(() => (stats?.topic_summary || []).slice(0, 20), [stats]); // İlk 20 konu
   const yearSummary = useMemo(() => stats?.year_summary || [], [stats]);
@@ -71,7 +71,7 @@ function Statistics() {
         <p className="page-subtitle">Detaylı LGS soru analizleri</p>
       </div>
 
-      {/* Genel İstatistikler */}
+      
       <div className="card mb-4">
         <div className="card-header">
           <h3 className="card-title">Genel İstatistikler</h3>
@@ -104,9 +104,9 @@ function Statistics() {
         </div>
       </div>
 
-      {/* Grafikler */}
+    
       <div className="grid grid-cols-2 mb-4">
-        {/* Konu Dağılımı Bar Chart */}
+      
         <div className="card">
           <div className="card-header">
             <h3 className="card-title">Konu Dağılımı (Toplam Sorular)</h3>
@@ -122,7 +122,7 @@ function Statistics() {
           </ResponsiveContainer>
         </div>
 
-        {/* Yıllara Göre Dağılım */}
+        
         <div className="card">
           <div className="card-header">
             <h3 className="card-title">Yıllara Göre Soru Sayısı</h3>
@@ -139,7 +139,7 @@ function Statistics() {
         </div>
       </div>
 
-      {/* Konu Yüzdeleri Pie Chart */}
+     
       {topicDist.length > 0 && (
         <div className="grid grid-cols-2 mb-4">
           <div className="card">
@@ -167,7 +167,7 @@ function Statistics() {
             </ResponsiveContainer>
           </div>
 
-          {/* Konu Detay Tablosu */}
+          
           <div className="card">
             <div className="card-header">
               <h3 className="card-title">Konu Detayları (2020+) - Top 10</h3>
@@ -190,7 +190,7 @@ function Statistics() {
         </div>
       )}
 
-      {/* Detaylı Tablo */}
+     
       {topicSummary.length > 0 && (
         <div className="card">
           <div className="card-header">
