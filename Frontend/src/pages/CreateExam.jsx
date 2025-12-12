@@ -39,7 +39,7 @@ function CreateExam() {
 
     const doc = new jsPDF();
     
-    // Türkçe karakter desteği için font ayarı
+   
     doc.setLanguage("tr");
     
     const pageWidth = doc.internal.pageSize.getWidth();
@@ -66,13 +66,13 @@ function CreateExam() {
         .replace(/ç/g, 'c');
     };
 
-    // Başlık
+  
     doc.setFontSize(18);
     doc.setFont('helvetica', 'bold');
     doc.text('LGS INGILIZCE SINAVI', pageWidth / 2, yPosition, { align: 'center' });
     yPosition += 15;
 
-    // Sınav Bilgileri
+  
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
     doc.text(`Toplam Soru: ${exam.exam_info.total_questions}`, margin, yPosition);
@@ -82,7 +82,7 @@ function CreateExam() {
     doc.text(`Tahmini Sure: ${exam.exam_info.estimated_time}`, margin, yPosition);
     yPosition += 10;
 
-    // Konu Dağılımı
+ 
     doc.setFont('helvetica', 'bold');
     doc.text('Konu Dagilimi:', margin, yPosition);
     yPosition += 7;
@@ -93,7 +93,7 @@ function CreateExam() {
     });
     yPosition += 10;
 
-    // Sorular
+   
     exam.questions.forEach((q, index) => {
       // Yeni sayfa kontrolü
       if (yPosition > pageHeight - 60) {
@@ -101,7 +101,7 @@ function CreateExam() {
         yPosition = margin;
       }
 
-      // Soru numarası ve konu
+     
       doc.setFontSize(12);
       doc.setFont('helvetica', 'bold');
       doc.text(`Soru ${index + 1}`, margin, yPosition);
@@ -117,7 +117,7 @@ function CreateExam() {
       doc.text(questionLines, margin, yPosition);
       yPosition += questionLines.length * 6 + 5;
 
-      // Seçenekler
+     
       const options = [
         { label: 'A', text: cleanText(q.option_a) },
         { label: 'B', text: cleanText(q.option_b) },
@@ -138,7 +138,7 @@ function CreateExam() {
       yPosition += 10;
     });
 
-    // Cevap Anahtarı - Yeni sayfa
+   
     doc.addPage();
     yPosition = margin;
 
@@ -167,7 +167,7 @@ function CreateExam() {
 
     yPosition += (answersPerColumn * 7) + 15;
 
-    // İstatistikler
+   
     if (yPosition < pageHeight - 40) {
       doc.setFont('helvetica', 'bold');
       doc.text('Konu Bazinda Cevap Dagilimi:', margin, yPosition);
@@ -188,7 +188,7 @@ function CreateExam() {
       });
     }
 
-    // PDF'i kaydet
+ 
     const fileName = `LGS_Sinav_${new Date().toISOString().split('T')[0]}.pdf`;
     doc.save(fileName);
   };
