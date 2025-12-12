@@ -150,7 +150,7 @@ function CreateExam() {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
 
-    // Cevapları 4 sütunda göster
+    
     const answersPerColumn = Math.ceil(exam.questions.length / 4);
     const columnWidth = (pageWidth - 2 * margin) / 4;
     
@@ -287,7 +287,7 @@ function CreateExam() {
           )}
         </div>
 
-        {/* Exam Preview */}
+       
         <div className="card exam-preview-container">
           <div className="card-header flex justify-between items-center">
             <h3 className="card-title">Sınav Önizleme</h3>
