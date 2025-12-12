@@ -158,7 +158,7 @@ function MLModel() {
     const maxWidth = pageWidth - 2 * margin;
     let yPosition = margin;
 
-    // Türkçe karakter temizleme fonksiyonu
+    
     const cleanText = (text) => {
       if (!text) return '';
       return text
@@ -176,13 +176,13 @@ function MLModel() {
         .replace(/ç/g, 'c');
     };
 
-    // Başlık
+    
     doc.setFontSize(18);
     doc.setFont('helvetica', 'bold');
     doc.text('ML MODEL ILE URETILEN SORULAR', pageWidth / 2, yPosition, { align: 'center' });
     yPosition += 15;
 
-    // Model Bilgileri
+    
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
     if (mlStatus) {
@@ -194,7 +194,7 @@ function MLModel() {
     doc.text(`Toplam Soru: ${questions.length}`, margin, yPosition);
     yPosition += 15;
 
-    // Sorular
+   
     questions.forEach((q, index) => {
       if (yPosition > pageHeight - 60) {
         doc.addPage();
@@ -237,7 +237,7 @@ function MLModel() {
       yPosition += 10;
     });
 
-    // Cevap Anahtarı - Yeni sayfa
+    
     doc.addPage();
     yPosition = margin;
 
@@ -249,7 +249,7 @@ function MLModel() {
     doc.setFontSize(10);
     doc.setFont('helvetica', 'normal');
 
-    // Cevapları 4 sütunda göster
+   
     const answersPerColumn = Math.ceil(questions.length / 4);
     const columnWidth = (pageWidth - 2 * margin) / 4;
     
@@ -274,7 +274,7 @@ function MLModel() {
         <p className="page-subtitle">Machine Learning ile soru üretimi</p>
       </div>
 
-      {/* ML Status */}
+      
       <div className="card mb-4">
         <div className="card-header">
           <h3 className="card-title">Model Durumu</h3>
@@ -403,7 +403,7 @@ function MLModel() {
           </button>
         </div>
 
-        {/* Generate with ML */}
+        
         <div className="card">
           <div className="card-header">
             <h3 className="card-title">ML ile Soru Üret</h3>
@@ -501,7 +501,7 @@ function MLModel() {
         </div>
       )}
 
-      {/* Generated Questions */}
+      
       {questions.length > 0 && (
         <div className="card mt-4">
           <div className="card-header flex justify-between items-center">
