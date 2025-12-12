@@ -48,7 +48,7 @@ function CreateExam() {
     const maxWidth = pageWidth - 2 * margin;
     let yPosition = margin;
 
-    // Türkçe karakter temizleme fonksiyonu
+   
     const cleanText = (text) => {
       if (!text) return '';
       return text
@@ -95,7 +95,7 @@ function CreateExam() {
 
    
     exam.questions.forEach((q, index) => {
-      // Yeni sayfa kontrolü
+      
       if (yPosition > pageHeight - 60) {
         doc.addPage();
         yPosition = margin;
@@ -110,7 +110,7 @@ function CreateExam() {
       doc.text(`(${cleanText(q.exam_topic)})`, margin + 20, yPosition);
       yPosition += 8;
 
-      // Soru metni
+      
       doc.setFontSize(10);
       doc.setFont('helvetica', 'normal');
       const questionLines = doc.splitTextToSize(cleanText(q.question_text), maxWidth);
