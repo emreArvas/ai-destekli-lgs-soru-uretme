@@ -60,7 +60,7 @@ function QuestionBank() {
     try {
       setLoading(true);
       
-      // Parametreleri hazırla - limit her zaman gönder
+      
       const cleanFilters = { limit: filters.limit || 50 };
       if (filters.year) cleanFilters.year = parseInt(filters.year);
       if (filters.topic) cleanFilters.topic = filters.topic;
@@ -125,7 +125,7 @@ function QuestionBank() {
         <p className="page-subtitle">Geçmiş LGS İngilizce sorularını inceleyin</p>
       </div>
 
-      {/* Filters */}
+   
       <div className="card mb-4">
         <div className="filters-grid">
           <div className="form-group">
@@ -188,7 +188,7 @@ function QuestionBank() {
         </div>
       </div>
 
-      {/* Results */}
+    
       <div className="card">
         <div className="card-header flex justify-between items-center">
           <h3 className="card-title">
